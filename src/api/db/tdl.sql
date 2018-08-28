@@ -1,0 +1,14 @@
+-- CREATE TABLE [Users] ( 
+-- 	[UserId] INTEGER  NOT NULL PRIMARY KEY, 
+-- 	[Name] NVARCHAR(50)  NOT NULL  
+-- ); 
+-- CREATE TABLE [Tasks] (  
+-- 	[item_id] INTEGER  PRIMARY KEY NOT NULL,
+-- 	[UserId] INTEGER NOT NULL,
+-- 	[Name] NVARCHAR(50) NOT NULL,   
+-- 	[item_desc] NVARCHAR(200) NOT NULL,
+--     [item_status] NVARCHAR(200) NOT NULL
+-- );     
+
+-- INSERT into users(name) values('Emily Ramjit')
+-- select UserId from users where Name = 'Emily Ramjit'
