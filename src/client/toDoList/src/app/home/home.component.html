@@ -1,0 +1,44 @@
+<div *ngIf="receivedData">
+<div class="container">
+    <h1>To-Do List App</h1>
+</div>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Task_ID</th>
+        <th scope="col">Task_Desc</th>
+        <th scope="col">Task_Status</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>{{item_id}}</td>
+        <td>{{item_desc}}</td>
+        <td>{{item_status}}</td>
+        <button> Mark Complete</button>
+        <button> Remove Item </button>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+        <button> Mark Complete</button>
+        <button> Remove Item </button>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+        <button> Mark Complete</button>
+        <button> Remove Item </button>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
