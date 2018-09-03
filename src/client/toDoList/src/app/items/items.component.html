@@ -1,0 +1,13 @@
+
+<div class="container">
+  <h1>To-Do List App -- Create New Item</h1>
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+  <div class="form-group">
+      <label for="name">Item Description</label>
+      <input type="text" class="form-control" ngModel name="desc" id="desc">
+      
+    </div>
+
+<button>Submit</button>
+</form>
+</div>

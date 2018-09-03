@@ -16,20 +16,22 @@ export class itemService {
 
     // Uses http.get() to load data from a single API endpoint
     getItems(id: any) {
-        return this.http.get('http://localhost:3000/getItems/'+ id, httpOptions).pipe(map((res: any) => {
-          console.log('res', id);
-    }))
+        console.log(JSON.stringify(id) + ' id')
+        return this.http.get('http://localhost:3000/getItems/'+ id, httpOptions);
   }
-    createItem(name:any) {
-      console.log(JSON.stringify(name) + ' name')
-      return this.http.post('http://localhost:3000/createUser', name, httpOptions).pipe(map((res: any) => {
-  }))
-
-    // Uses http.get() to load data from a single API endpoint
-//     getUsers() {
-//         return this.http.get('http://localhost:3000/getUsers');
-//     }
-//     createUser(name:string) {
-//       return this.http.post('http://localhost:3000/createUser', name);
-//   }
+    createItem(itemArray:any) {
+      console.log(JSON.stringify(itemArray) + ' itemArray')
+      return this.http.post('http://localhost:3000/createItem',itemArray, httpOptions).pipe(map((res: any) => {
+        }))
+    }
+    removeItem(id:any) {
+        console.log(JSON.stringify(id) + ' Item Id')
+        return this.http.post('http://localhost:3000/removeItem/' + id, httpOptions).pipe(map((res: any) => {
+          }))
+      }
+    markDone(id:any) {
+        console.log(JSON.stringify(id) + ' Item Id')
+        return this.http.post('http://localhost:3000/markDone/' + id, httpOptions).pipe(map((res: any) => {
+          }))
+      }
 }

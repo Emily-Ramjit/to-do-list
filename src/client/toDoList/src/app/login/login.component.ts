@@ -34,16 +34,18 @@ export class LoginComponent implements OnInit {
         console.log(this.users);
 
         this.users.forEach(element => {
-          if (element.name == name.name) {
+          if (element.name === name.name) {
             this.isLoggedIn = true;
              this.currentUserId = element.UserId;
             console.log(this.isLoggedIn + ' LOGGED IN')
             this.router.navigateByUrl('/home/'+ this.currentUserId)
           }
           else{
+            if(this.isLoggedIn === false){
             console.log(this.isLoggedIn + ' creating user')
             this.userService.createUser(name).subscribe();
             this.router.navigateByUrl('/home/'+ this.currentUserId)
+            }
           }
         });
       });

@@ -9,6 +9,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component'
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ItemsComponent } from './items/items.component';
 
 const routes: Routes = [
   {
@@ -18,6 +20,10 @@ const routes: Routes = [
   {
     path: 'home/:id',
     component: HomeComponent
+  },
+  {
+    path: 'home/createItem/:id',
+    component: ItemsComponent
   }
  ]
 
@@ -26,13 +32,15 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    ItemsComponent
   ],
   imports: [
     [RouterModule.forRoot(routes)],
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   exports: [RouterModule],
   providers: [ userService, itemService ],

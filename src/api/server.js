@@ -52,21 +52,6 @@ app.get('/getItems/:id', function (req, res, callback) {
     });
   });
 
-  app.get('/getUsers', function (req, res, callback) {
-    db.serialize(function() {  
-      db.all("SELECT * from Users",function(err,rows){  
-          if(err)
-          {  
-              console.log(err);  
-          }  
-          else{  
-              console.log(rows);  
-          }  
-          res.json(rows)
-        });  
-      });
-    });
-
     app.post('/createUser', function (req, res, callback) {
         var postData = (JSON.stringify(req.body.name));
       db.serialize(function() {  
@@ -83,48 +68,56 @@ app.get('/getItems/:id', function (req, res, callback) {
         });
       });
 
-    //   app.post('/createItem', function (req, res, callback) {
-    //     db.serialize(function() {  
-    //       db.all("INSERT INTO tdl.Tasks (desc, status) VALUES(body.desc, body.status)",function(err,rows){  
-    //           if(err)
-    //           {  
-    //               console.log(err);  
-    //           }  
-    //           else{  
-    //               console.log(rows);  
-    //           }  
-    //           res.json(rows)
-    //         });  
-    //       });
-    //     });
-        // app.post('/markDone', function (req, res, callback) {
-        //   db.serialize(function() {  
-        //     db.all("UPDATE tdl.Tasks (status = 'Done') inner join on tdl.users.UserId == tdl.Tasks.UserId' where tdl.item_id == body.id",function(err,rows){  
-        //         if(err)
-        //         {  
-        //             console.log(err);  
-        //         }  
-        //         else{  
-        //             console.log(rows);  
-        //         }  
-        //         res.json(rows)
-        //       });  
-        //     });
-        //   });
+      app.post('/createItem', function (req, res, callback) {
+        var userid = (JSON.stringify(req.body.UserId));
+        var desc = (JSON.stringify(req.body.item_desc.desc));
+        var status = (JSON.stringify(req.body.item_status));
+        
+        db.serialize(function() {  
+          db.all(`INSERT INTO Tasks (UserId, item_desc, item_status) VALUES (` + userid + `,` + desc + `,`+ status + `)`,function(err,rows){  
+              if(err)
+              {  
+                  console.log(err);  
+              }  
+              else{  
+                  console.log(rows);  
+              }  
+              res.json(rows)
+            });  
+          });
+        });
 
-          // app.post('/removeItem', function (req, res, callback) {
-          //   db.serialize(function() {  
-          //     db.all("Delete FROM tdl.Tasks where tdl.item_id == body.id",function(err,rows){  
-          //         if(err)
-          //         {  
-          //             console.log(err);  
-          //         }  
-          //         else{  
-          //             console.log(rows);  
-          //         }  
-          //         res.json(rows)
-          //       });  
-          //     });
-          //   });
+        app.post('/markDone/:id', function (req, res, callback) {
+            var id = (JSON.stringify(req.params.id));
+            console.log(id + ' api id')
+          db.serialize(function() {  
+            db.all(`UPDATE Tasks set item_status = 'Complete' where item_id = ` + id + ``,function(err,rows){  
+                if(err)
+                {  
+                    console.log(err);  
+                }  
+                else{  
+                    console.log(rows);  
+                }  
+                res.json(rows)
+              });  
+            });
+          });
+
+          app.post('/removeItem/:id', function (req, res, callback) {
+            var id = (JSON.stringify(req.params.id));
+            db.serialize(function() {  
+              db.all(`Delete FROM Tasks where item_id = ` + id,function(err,rows){  
+                  if(err)
+                  {  
+                      console.log(err);  
+                  }  
+                  else{  
+                      console.log(rows);  
+                  }  
+                  res.json(rows)
+                });  
+              });
+            });
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'))
