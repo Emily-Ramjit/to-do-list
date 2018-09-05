@@ -4,6 +4,7 @@ var app = express();
 var cors = require('cors');
 
 app.use(cors());
+
 var bodyParser = require('body-parser'); 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -14,6 +15,7 @@ var db = new sqlite3.Database('tdl.db');
 
 db.serialize(function() {
     db.run("CREATE TABLE IF NOT EXISTS users (UserId INTEGER, Name TEXT)");
+    db.run("CREATE TABLE IF NOT EXISTS Tasks (item_id INTEGER, UserId INTEGER, item_desc TEXT, item_status TEXT)");
 });
 
 

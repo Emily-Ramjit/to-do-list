@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
             if(this.isLoggedIn === false){
             console.log(this.isLoggedIn + ' creating user')
             this.userService.createUser(name).subscribe();
+            alert("User Not Found. Creating new user!");
             this.router.navigateByUrl('/home/'+ this.currentUserId)
             }
           }
